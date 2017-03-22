@@ -1,0 +1,8 @@
+RewriteEngine on
+
+RewriteRule ^inicio$             index.php
+RewriteRule ^dashboard-practice$ index.php
+RewriteRule ^acceso$             index.php?c=auth&a=userAuth
+
+RewriteRule ^acceso/validoEmail$ index.php?c=auth&a=validEmail
+RewriteRule ^cerrar-sesion$      index.php?c=auth&a=logout

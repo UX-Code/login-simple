@@ -1,0 +1,13 @@
+.error, .parsley-errors-list{
+  color: red;
+  font-size: 12px;
+}
+
+input{
+  margin-bottom: 5px !important;
+}
+
+ul.parsley-errors-list{
+  margin-bottom: 2px;
+  margin-top: 0;
+}
