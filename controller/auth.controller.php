@@ -9,5 +9,10 @@ class AuthController{
         $this->users = new UserModel();
     }
 
+    // Metodo para autenticar y validar el usuario (el usuario debe estar en la base de datos)
+    public function userAuth(){
+      $data = $_POST["data"];
+      print_r($data);
+    }
 }
 ?>

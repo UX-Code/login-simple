@@ -17,6 +17,6 @@
     require_once "controller/$controller.controller.php";
     $controller = ucwords($controller).'Controller';
     $controller = new $controller;
-    $controller->inicio();
+    $controller->main();
   }
 ?>
