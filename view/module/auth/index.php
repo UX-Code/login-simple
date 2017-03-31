@@ -20,6 +20,7 @@
         </div>
       </form>
     </div>
+    <div class="center"><a href="visitantes/registro">Registrar Usuario</a></div>
   </div>
 
 </div>
