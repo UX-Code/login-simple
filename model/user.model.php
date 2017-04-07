@@ -9,7 +9,12 @@ class UserModel{
 		  $this->pdo = DataBase::connect();
 		  $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
-			die($e->getMessage());
+			$code = $e->getCode();
+			$text = $e->getMessage();
+			$file = $e->getFile();
+			$line = $e->getLine();
+
+			DataBase::createLog($code, $text, $file, $line);
 		}
 	}
 
@@ -23,15 +28,21 @@ class UserModel{
 				$query = $this->pdo->prepare($sql);
 				$query->execute(array($data[4],$data[0],$data[1],$data[2]));
 
-				$sql = "INSERT INTO access VALUES (?,?,?,0,?)";
+				$sql = "INSERT INTO accesss VALUES (?,?,?,0,?)";
 				$query = $this->pdo->prepare($sql);
 				$query->execute(array($data[5],$data[4],$data[3],$data[6]));
+				$msn = "Guardo con exito";
 
 				}catch (PDOException $e) {
- 					die($e->getMessage());
+					$code = $e->getCode();
+					$text = $e->getMessage();
+					$file = $e->getFile();
+					$line = $e->getLine();
+					$msn = "Ocurrio un error, notificarle al administrador";
+					DataBase::createLog($code, $text, $file, $line);
 			  }
 
-			 return "Guardo con exito";
+				return $msn;
 		 }
 
 		 /*********************************************
@@ -39,12 +50,17 @@ class UserModel{
 	 	 ********************************************/
 	 	 public function updateUserFail($data){
 	 		 try{
-				 	
+
 	 			 	$sql = "UPDATE access SET acc_failed_att = (acc_failed_att + 1) WHERE user_id = (SELECT user_id FROM users WHERE user_email = ?) ";
 	 				$query = $this->pdo->prepare($sql);
 	 				$query->execute(array($data));
 	 				}catch (PDOException $e) {
-	  					die($e->getMessage());
+						$code = $e->getCode();
+						$text = $e->getMessage();
+						$file = $e->getFile();
+						$line = $e->getLine();
+
+						DataBase::createLog($code, $text, $file, $line);
 	 			  }
 
 	 		 }
@@ -63,7 +79,12 @@ class UserModel{
 				$result = $query->fetch(PDO::FETCH_BOTH);
 
 			}catch (PDOException $e) {
-			die($e->getMessage());
+				$code = $e->getCode();
+				$text = $e->getMessage();
+				$file = $e->getFile();
+				$line = $e->getLine();
+
+				DataBase::createLog($code, $text, $file, $line);
 		}
 
 		return $result;
